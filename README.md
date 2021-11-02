@@ -39,3 +39,39 @@ BetterScroll 2.0可能遇到的难点：
 1.项目的数据存储问题，需要通过vuex进行存储，一开始存储起来很费劲，经过一段时间的使用后就适应了，主要就是commit提交与state的使用与props的传递，可以实现数据的双向获取，与存储
 
 2.开发购物车页面的时候进行商品购买时出现了数据渲染的错误，主要还是对数据结构的构思出现了问题，一开始想的是使用数组存储，导致数据渲染的时候出现内容重复出现叠加问题，最后使用对象进行存储就解决了这个数据渲染问题
+
+vue打包所使用的配置文件
+```js
+module.exports = {
+  // 公共路径(必须有的)
+  publicPath: './',
+  // 输出文件目录
+  outputDir: 'dist',
+  // 静态资源存放的文件夹(相对于ouputDir)
+  assetsDir: 'assets',
+  // eslint-loader 是否在保存的时候检查(果断不用，这玩意儿我都没装)
+  lintOnSave: false,
+  // 我用的only，打包后小些
+  productionSourceMap: true, // 不需要生产环境的设置false可以减小dist文件大小，加速构建
+  // css相关配置(我暂时没用到)
+  css: {
+    // 是否使用css分离插件 ExtractTextPlugin
+    extract: true
+    // 开启 CSS source maps?
+    // sourceMap: false,
+    // css预设器配置项
+    // loaderOptions: {},
+    // 启用 CSS modules for all css / pre-processor files.
+    // modules: false
+  },
+  // webpack-dev-server 相关配置
+  devServer: {
+    open: true, // npm run serve后自动打开页面
+    host: '127.0.0.1', // 匹配本机IP地址(默认是0.0.0.0)
+    port: 8080, // 开发服务器运行端口号
+    proxy: null
+    // 注：目前本项目暂时没有写后台接口，没有跨域问题，暂时不配置proxy
+  }
+}
+// 差不多就这些的，其余的大家可以查看官方文档，链接上边给出了
+```
